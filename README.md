@@ -165,6 +165,11 @@ repository. Bind it once in Cloudflare Dashboard → Workers & Pages → `doctor
 Domains & Routes; `wrangler deploy` leaves that binding untouched. The `workers.dev` subdomain
 is disabled so there is only one public entry point.
 
+The commercial-licence mailbox is deployment configuration too. Add it as a Worker variable —
+Cloudflare Dashboard → Workers & Pages → `doctor` → Settings → Variables → `CONTACT_EMAIL`
+(plain text; `.dev.vars` for local runs). `GET /api/site` serves it to the page; while it is
+unset the contact blocks stay hidden instead of rendering an empty mail link.
+
 ## Project layout
 
 ```

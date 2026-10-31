@@ -974,11 +974,39 @@ function bindEvents() {
   }
 }
 
+// ---------------------------------------------------------------- 联系方式
+
+/**
+ * 商用授权邮箱是部署配置，不在仓库里写死：`/api/site` 从 CONTACT_EMAIL 下发。
+ * 未配置时（例如别人 fork 后自建）整块保持 hidden，页面不会出现空的 mailto 链接。
+ */
+async function renderContactEmail() {
+  const blocks = document.querySelectorAll("[data-contact-mail]");
+  if (!blocks.length) return;
+  let email = "";
+  try {
+    const payload = await api("/api/site");
+    email = String(payload?.data?.contactEmail ?? "");
+  } catch {
+    email = "";
+  }
+  if (!email) return;
+  for (const block of blocks) {
+    const link = block.querySelector("[data-contact-email]");
+    if (link) {
+      link.textContent = email;
+      link.href = `mailto:${email}`;
+    }
+    block.hidden = false;
+  }
+}
+
 // ---------------------------------------------------------------- 启动
 
 async function boot() {
   bindEvents();
   renderSelected();
+  void renderContactEmail();
   try {
     const data = await api("/api/parts");
     state.parts = data.items ?? [];

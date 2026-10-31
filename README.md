@@ -160,8 +160,10 @@ npm run data:load -- --remote
 npm run deploy
 ```
 
-The Worker is bound to `doctor.wordtk.com` through a `routes` entry with `custom_domain: true`, and
-the `workers.dev` subdomain is disabled so there is only one public entry point.
+The custom domain is **not** declared in `wrangler.jsonc`: a live origin must not sit in the
+repository. Bind it once in Cloudflare Dashboard → Workers & Pages → `doctor` → Settings →
+Domains & Routes; `wrangler deploy` leaves that binding untouched. The `workers.dev` subdomain
+is disabled so there is only one public entry point.
 
 ## Project layout
 

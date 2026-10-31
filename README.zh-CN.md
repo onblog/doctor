@@ -151,8 +151,10 @@ npm run data:load -- --remote
 npm run deploy
 ```
 
-Worker 通过 `wrangler.jsonc` 的 `routes`（`custom_domain: true`）绑定到 `doctor.wordtk.com`，
-并关闭了 `workers.dev` 子域，保证对外只有一个入口。
+自定义域名**不写在** `wrangler.jsonc` 里：线上域名不能进仓库。Custom Domain 只需在
+Cloudflare Dashboard → Workers & Pages → `doctor` → Settings → Domains & Routes 绑定一次，
+`wrangler deploy` 不会改动它；并关闭了 `workers.dev` 子域，保证对外只有一个入口。
+商用授权邮箱同样不在仓库里，走 Worker 变量 `CONTACT_EMAIL`，由 `/api/site` 下发给页面。
 
 ## 目录结构
 

@@ -12,6 +12,7 @@ import { getDisease, getDiseaseContext, searchDiseases } from "./diseases";
 import { explainGraph, getGraph } from "./graph";
 import { health } from "./health";
 import { listParts } from "./parts";
+import { site } from "./site";
 import { listSymptomsByPart, searchSymptoms } from "./symptoms";
 
 function requireGet(request: Request): void {
@@ -34,6 +35,11 @@ export async function handleApi(
   if (pathname === "/api/parts") {
     requireGet(request);
     return listParts(request, env, url, ctx);
+  }
+
+  if (pathname === "/api/site") {
+    requireGet(request);
+    return site(request, env);
   }
 
   if (pathname === "/api/symptoms/search") {

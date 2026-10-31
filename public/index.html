@@ -163,7 +163,8 @@
             <span><b id="statEdge">154,081</b>关联</span>
           </div>
           <p class="sidebar-note">结果仅供参考，最终诊断请以医生诊断为准。</p>
-          <p class="sidebar-contact"><a href="mailto:hello@wordtk.com">核心数据库商用授权：hello@wordtk.com</a></p>
+          <!-- 商用授权邮箱是部署配置，不在仓库里写死：由 /api/site 从 CONTACT_EMAIL 下发，未配置时整块保持隐藏 -->
+          <p class="sidebar-contact" data-contact-mail hidden>核心数据库商用授权：<a data-contact-email></a></p>
 
           <h2>自查步骤</h2>
           <ol class="side-steps">
@@ -176,8 +177,8 @@
 
       <footer class="footer">
         <p>医疗知识图谱 · 仅供健康参考，不构成医疗诊断</p>
-        <p class="footer-contact">
-          核心数据库商用授权与购买请联系：<a href="mailto:hello@wordtk.com">hello@wordtk.com</a>
+        <p class="footer-contact" data-contact-mail hidden>
+          核心数据库商用授权与购买请联系：<a data-contact-email></a>
         </p>
       </footer>
     </div>
